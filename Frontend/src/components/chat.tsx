@@ -27,7 +27,7 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
   const [showLoader, setShowLoader] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
   const [searchParams] = useSearchParams();
   const conversationId = searchParams.get("id");
   const navigate = useNavigate();

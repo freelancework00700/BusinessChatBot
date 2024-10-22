@@ -12,8 +12,8 @@ const Chatbot = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const chatbotId = searchParams.get("id");
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setLoading] = useState<boolean>(true);
+  const [, setError] = useState<string | null>(null);
   const [chatbotData, setChatbotData] = useState<any>({
     message: "",
     reply: "",

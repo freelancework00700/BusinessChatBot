@@ -81,7 +81,7 @@ const Dashboard = () => {
     }
   };
 
-  const handleUserClick = async (userName: string, userId: number) => {
+  const handleUserClick = async (userId: number) => {
     try {
       if (!token) {
         setError("No token found. Please log in.");
@@ -256,7 +256,7 @@ const Dashboard = () => {
             </thead>
             <tbody>
               {chatbotData?.map((entry, index) => (
-                <tr key={entry.id}>
+                <tr key={index}>
                   {/* <td>{index + 1}</td> Index */}
                   <td>{entry.message}</td> 
                   <td>{entry.reply}</td>
@@ -301,7 +301,7 @@ const Dashboard = () => {
                   <li
                     key={index}
                     className="user-item"
-                    onClick={() => handleUserClick(user.userName, user.userId)}
+                    onClick={() => handleUserClick(user.userId)}
                   >
                     <img
                       className="user-avatar"
