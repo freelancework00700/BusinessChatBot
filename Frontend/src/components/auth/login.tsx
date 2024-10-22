@@ -23,12 +23,12 @@ const Login = () => {
       const data = await response.json();
       if (!data.success) {
         throw new Error(data.message || "Login failed");
-      } 
+      }
 
       const userData = {
         email: data.data.user.email,
-        id:  data.data.user.id,
-        type:  data.data.user.type,
+        id: data.data.user.id,
+        type: data.data.user.type,
       };
       localStorage.setItem("token", data.data.jwtToken);
       localStorage.setItem("user", JSON.stringify(userData));
@@ -36,16 +36,16 @@ const Login = () => {
       setError(null);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2000);
+      }, 1000);
     } catch (error: any) {
       setError(error.message);
       setSuccess(false);
-      setTimeout(() => setError(null), 3000);
+      setTimeout(() => setError(null), 2000);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
     handleLogin();
   };
 
@@ -86,14 +86,9 @@ const Login = () => {
         <button className="login-button" type="submit">
           Login
         </button>
-        {/* Link to Register Page */}
         <p className="register-link">
           Don't have an account?{" "}
-          <a
-            onClick={() => navigate("/register")}
-          >
-            Register
-          </a>
+          <a onClick={() => navigate("/register")}>Register</a>
         </p>
       </form>
     </div>

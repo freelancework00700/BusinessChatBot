@@ -1,17 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "../../styles/register.css";
-const API = import.meta.env.VITE_API_URL; 
-
-
+const API = import.meta.env.VITE_API_URL;
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [type, setType] = useState<string>("customer"); 
+  const [type, setType] = useState<string>("customer");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -23,7 +21,7 @@ const Register = () => {
         body: JSON.stringify({
           email,
           password,
-          type
+          type,
         }),
       });
 
@@ -32,20 +30,20 @@ const Register = () => {
       }
 
       setSuccess(true);
-      setError(null);  
+      setError(null);
       setTimeout(() => {
         setSuccess(false);
-        navigate("/login");  
-      }, 3000);
+        navigate("/login");
+      }, 1000);
     } catch (error: any) {
       setError(error.message);
       setSuccess(false);
-      setTimeout(() => setError(null), 3000);
+      setTimeout(() => setError(null), 2000);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); 
+    e.preventDefault();
     handleRegister();
   };
 
@@ -86,7 +84,6 @@ const Register = () => {
           />
         </div>
         <div className="input-group">
-          {/* <label htmlFor="userType">User Type:</label> */}
           <select
             id="userType"
             value={type}
@@ -100,13 +97,9 @@ const Register = () => {
         <button className="register-button" type="submit">
           Register
         </button>
-         {/* Link to Login Page */}
-         <p className="login-link">
+        <p className="login-link">
           Already have an account?{" "}
-          <a
-            onClick={() => navigate("/login")} >
-            Login
-          </a>
+          <a onClick={() => navigate("/login")}>Login</a>
         </p>
       </form>
     </div>

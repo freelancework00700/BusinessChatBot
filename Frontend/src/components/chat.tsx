@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useSearchParams, useNavigate } from "react-router-dom";
 import "../styles/chat.css";
-
+import { ThreeDots } from "react-loader-spinner";
 const API = import.meta.env.VITE_API_URL;
 
-// Interface for UserProfile
 interface LoginUser {
   id: number;
   name: string;
   avatar: string;
 }
-
 interface Message {
   id: number;
   message: string;
@@ -28,10 +26,11 @@ const Chat = () => {
   const [loginUser, setLoginUser] = useState<LoginUser | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
+  const [showLoader, setShowLoader] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchParams] = useSearchParams();
   const conversationId = searchParams.get("id");
-  const navigate = useNavigate(); // Initialize the navigate function
+  const navigate = useNavigate();
 
   const fetchMessages = async () => {
     try {
@@ -59,9 +58,6 @@ const Chat = () => {
       }
 
       const data = await response.json();
-      console.log("data: ", data);
-
-      // Sort messages by id (ascending order)
       const sortedMessages = data.data.sort((a: any, b: any) => a.id - b.id);
 
       const fetchedMessages: Message[] = sortedMessages.map((msg: any) => {
@@ -79,6 +75,21 @@ const Chat = () => {
     } catch (error: any) {
       setError(error.message || "An unexpected error occurred");
     }
+  };
+
+  // Loader
+  const DotLoader = () => {
+    return (
+      <ThreeDots
+        height="50"
+        width="50"
+        radius="9"
+        color="#435c75"
+        ariaLabel="three-dots-loading"
+        wrapperStyle={{}}
+        visible={true}
+      />
+    );
   };
 
   useEffect(() => {
@@ -105,7 +116,6 @@ const Chat = () => {
           throw new Error("Failed to send message");
         }
 
-        // Update the messages list after sending the message
         const newMessage: Message = {
           id: messages.length + 1,
           message: data.data.message,
@@ -115,7 +125,12 @@ const Chat = () => {
         setMessages((prev) => [...prev, newMessage]);
         setInput("");
         setError(null);
-        fetchMessages();
+        setShowLoader(true);
+
+        setTimeout(() => {
+          fetchMessages();
+          setShowLoader(false);
+        }, 2000);
       } catch (error: any) {
         setError(
           error.message ||
@@ -137,26 +152,31 @@ const Chat = () => {
       </div>
       <div className="messages">
         {messages.length > 0 ? (
-          messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`message ${
-                msg.sendBy === loginUser?.name ? "user" : "bot"
-              }`}
-            >
-              <img
-                src={msg.avatar}
-                alt={`${msg.sendBy} avatar`}
-                className="avatar"
-              />
-              <div className="message-content">
-                <strong>
-                  {msg.sendBy === loginUser?.name ? loginUser.name : msg.sendBy}
-                </strong>
-                <p>{msg.message}</p>
+          <>
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`message ${
+                  msg.sendBy === loginUser?.name ? "user" : "bot"
+                }`}
+              >
+                <img
+                  src={msg.avatar}
+                  alt={`${msg.sendBy} avatar`}
+                  className="avatar"
+                />
+                <div className="message-content">
+                  {/* <strong>
+                    {msg.sendBy === loginUser?.name
+                      ? loginUser.name
+                      : msg.sendBy}
+                  </strong> */}
+                  <p>{msg.message}</p>
+                </div>
               </div>
-            </div>
-          ))
+            ))}
+            {showLoader && <p>{<DotLoader />}</p>}
+          </>
         ) : (
           <div className="no-messages">
             No messages found. Start the conversation!
@@ -170,6 +190,12 @@ const Chat = () => {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
           className="chat-input"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
         />
         <button onClick={handleSend} className="send-button">
           Send

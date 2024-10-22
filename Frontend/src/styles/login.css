@@ -2,86 +2,62 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Arial", sans-serif;
-  background: linear-gradient(
-    135deg,
-    #e6f1fa,
-    #a3c6ea
-  ); /* Gradient Background */
+  background: linear-gradient(135deg, #e6f1fa, #a3c6ea);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-
 .login-container {
-  background: rgba(
-    255,
-    255,
-    255,
-    0.2
-  ); /* Semi-transparent background for glassmorphism */
+  background: #fff;
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   padding: 40px;
   max-width: 400px;
   width: 100%;
-  backdrop-filter: blur(10px); /* Blur effect for glassmorphism */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* Light border for depth */
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
-
 .login-form {
   display: flex;
   flex-direction: column;
 }
-
 .login-form h2 {
   margin-bottom: 30px;
   text-align: center;
   font-size: 24px;
-  color: #3c4a5a; /* White */
+  color: #3c4a5a;
 }
-
 .input-group {
   margin-bottom: 20px;
 }
-
 .input-group label {
   font-size: 14px;
   margin-bottom: 8px;
-  color: #3c4a5a !important; /* White */
+  color: #3c4a5a !important;
 }
-
 .input-group input {
   padding: 12px;
   border: none !important;
   outline: none !important;
-  border-bottom: 1px solid #5a6f8c !important; /* Light border */
+  border-bottom: 1px solid #5a6f8c !important;
   font-size: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
   width: 100%;
-  background-color: transparent !important; /* Semi-transparent white */
-  /* background-color: rgba(255, 255, 255, 0.8); Semi-transparent white */
+  background-color: transparent !important;
 }
-
 .input-group ::placeholder {
   font-size: 14px;
 }
-
 .input-group input:focus {
   border-color: #5a6f8c;
   outline: none;
   box-shadow: 0 0 5px rgba(90, 110, 140, 0.5);
 }
-
 .login-button {
-  background: linear-gradient(
-    135deg,
-    #5a6f8c,
-    #3c4a5a
-  ); /* Gradient Background */
+  background: linear-gradient(135deg, #5a6f8c, #3c4a5a);
   color: white;
   padding: 12px;
   border: none;
@@ -91,24 +67,16 @@ body {
   transition: background-color 0.3s, box-shadow 0.3s;
   margin-top: 10px;
 }
-
 .login-button:hover {
-  background: linear-gradient(135deg, #3c4a5a, #2c3e50); /* Darker gradient */
+  background: linear-gradient(135deg, #3c4a5a, #2c3e50);
 }
-
 .login-button:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(60, 74, 90, 0.5);
 }
-
 .login-button:active {
-  background: linear-gradient(
-    135deg,
-    #2c3e50,
-    #1b2a38
-  ); /* Darker active gradient */
+  background: linear-gradient(135deg, #2c3e50, #1b2a38);
 }
-
 .register-link {
   margin-top: 5px;
   font-size: 12px;
