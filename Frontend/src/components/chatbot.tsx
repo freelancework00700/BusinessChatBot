@@ -42,8 +42,6 @@ const Chatbot = () => {
       setLoading(false);
       return;
     }
-
-    // Fetch the user list
     try {
       const response = await fetch(`${API}/user`, {
         method: "GET",
@@ -136,10 +134,10 @@ const Chatbot = () => {
             />
             <h3>{userProfile.name}</h3>
           </div>
-          <div >
-          <button onClick={() => navigate(-1)} className="back-button">
-          Back
-        </button>
+          <div>
+            <button onClick={() => navigate(-1)} className="back-button">
+              Back
+            </button>
           </div>
         </div>
         <div className="message-content">

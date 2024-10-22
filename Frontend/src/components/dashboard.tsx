@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 const API = import.meta.env.VITE_API_URL;
-
-// Interface for UserProfile
 interface UserProfile {
   name: string;
   avatar: string;
 }
-
 interface User {
   userName: string;
   userId: number;
@@ -27,7 +24,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [userData, setUserData] = useState<User>();
   const [chatbotData, setChatbotData] = useState<any[]>([]);
-  console.log("chatbotData: ", chatbotData);
+  const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const token = localStorage.getItem("token");
@@ -161,6 +158,7 @@ const Dashboard = () => {
     fetchUserData();
     handleGetChatbotData();
   }, []);
+
   // Logout function
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -192,6 +190,30 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
+      {showAlert && (
+        <div className="custom-alert-overlay">
+          <div className="custom-alert">
+            <h3>Are you sure you want to log out?</h3>
+            <div className="button-container">
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setShowAlert(false);
+                }}
+                className="confirm-button"
+              >
+                Yes
+              </button>
+              <button
+                onClick={() => setShowAlert(false)}
+                className="cancel-button"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="header">
         <div className="profile">
           <img className="avatar" src={userProfile.avatar} alt="User Avatar" />
@@ -202,7 +224,7 @@ const Dashboard = () => {
             <img
               src="../../public/logout.png"
               alt="Logout"
-              onClick={handleLogout}
+              onClick={() => setShowAlert(true)}
             />
           </button>
         </div>
@@ -211,10 +233,16 @@ const Dashboard = () => {
         <div className="chatbot-details">
           <h2>Chatbot Messages</h2>
           <button onClick={() => navigate("/chatbot")}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
             Add new
           </button>
           <table>
@@ -227,18 +255,38 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {chatbotData.map((entry, index) => (
+              {chatbotData?.map((entry, index) => (
                 <tr key={entry.id}>
                   {/* <td>{index + 1}</td> Index */}
-                  <td>{entry.message}</td> {/* Message */}
-                  <td>{entry.reply}</td> {/* Reply */}
+                  <td>{entry.message}</td> 
+                  <td>{entry.reply}</td>
                   <td>
-                    <button onClick={() => handleEdit(entry.id)}>Edit</button>
+                    <button onClick={() => handleEdit(entry.id)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                      </svg>
+                      Edit
+                    </button>
                     <button onClick={() => handleDelete(entry.id)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                      </svg>
                       Delete
                     </button>
                   </td>{" "}
-                  {/* Actions */}
                 </tr>
               ))}
             </tbody>

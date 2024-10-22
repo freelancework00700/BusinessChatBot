@@ -1,94 +1,78 @@
-/* General reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-
 html,
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
 }
-
 .dashboard-container {
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f3f4f6; /* Light background for a softer look */
+  background-color: #f3f4f6;
 }
-
 .header {
-  background: linear-gradient(135deg, #4A6F8C, #2A3A4E); /* Cooler gradient */
+  background: linear-gradient(135deg, #4a6f8c, #2a3a4e);
   color: white;
   padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .profile {
   display: flex;
   align-items: center;
 }
-
 .avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 10px;
 }
-
 .logout-icons img {
   width: 35px;
   height: 35px;
   cursor: pointer;
 }
-
 .message-content {
-  flex-grow: 1; /* Allow this section to grow */
-  padding: 20px; /* Add some padding for aesthetics */
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
-
 .message-content label {
   margin-bottom: 5px;
 }
-
 .message-content input,
 .message-content textarea {
-  width: 100%; /* Full width */
-  padding: 10px; /* Padding for input fields */
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 15px; /* Space between fields */
+  margin-bottom: 15px;
 }
-
 .message-content textarea {
-  resize: none; /* Prevent resizing */
-  height: 100px; /* Fixed height for textarea */
+  resize: none;
+  height: 100px;
 }
-
 button {
   padding: 10px 15px;
-  background-color: #4A6F8C; /* Button color */
+  background-color: #4a6f8c;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 button:hover {
   background-color: #2a3a4e;
 }
-
-/* Chat container styles */
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -99,16 +83,14 @@ button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background: #ece5dd;
 }
-
 .messages {
   flex-grow: 1;
-  overflow-y: auto; /* Enable scrolling if messages overflow */
+  overflow-y: auto;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   background-color: white;
 }
-
 .message {
   font-size: 12px;
   display: flex;
@@ -116,38 +98,29 @@ button:hover {
   margin: 5px 0;
   padding: 8px;
   border-radius: 5px;
-  max-width: 70%;
   word-wrap: break-word;
   transition: background-color 0.2s;
 }
-
 .user {
-  background-color: #9fa8f39a;
   margin-left: auto;
   flex-direction: row-reverse;
   text-transform: capitalize;
 }
-
 .user:hover {
   background-color: #d1c4e9;
 }
-
 .bot {
-  background-color: #a7cbf1;
   text-transform: capitalize;
 }
-
 .bot:hover {
   background-color: #92aaecd3;
 }
-
 .avatar {
   width: 35px;
   height: 35px;
   border-radius: 50%;
   margin: 0 10px;
 }
-
 .no-messages {
   text-align: center;
   color: #999;
