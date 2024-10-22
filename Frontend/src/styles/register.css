@@ -1,21 +1,26 @@
-/* Register.css */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #eef2f5;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #e6f1fa, #a3c6ea);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
 }
 
 .register-container {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   padding: 40px;
   max-width: 400px;
   width: 100%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .register-form {
@@ -27,7 +32,7 @@ body {
   margin-bottom: 30px;
   text-align: center;
   font-size: 24px;
-  color: #333;
+  color: #3c4a5a;
 }
 
 .input-group {
@@ -37,39 +42,130 @@ body {
 .input-group label {
   font-size: 14px;
   margin-bottom: 8px;
-  color: #555;
+  color: #3c4a5a;
 }
 
 .input-group input {
   padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #5a6f8c;
   font-size: 16px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
   width: 100%;
+  background-color: transparent;
+}
+
+.input-group ::placeholder {
+  font-size: 14px;
 }
 
 .input-group input:focus {
-  border-color: #007bff;
+  border-color: #5a6f8c;
   outline: none;
+  box-shadow: 0 0 5px rgba(90, 110, 140, 0.5);
 }
 
 .register-button {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #5a6f8c, #3c4a5a);
   color: white;
   padding: 12px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
   margin-top: 10px;
 }
 
 .register-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(135deg, #3c4a5a, #2c3e50);
 }
 
 .register-button:focus {
   outline: none;
+  box-shadow: 0 0 5px rgba(60, 74, 90, 0.5);
+}
+
+.register-button:active {
+  background: linear-gradient(135deg, #2c3e50, #1b2a38);
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 30px 20px;
+  }
+
+  .register-form h2 {
+    font-size: 20px;
+  }
+
+  .register-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+.login-link {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #2c3e50;
+}
+.login-link a {
+  cursor: pointer;
+}
+
+/* Popup styles */
+.popup {
+  width: 100%;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  color: white;
+  opacity: 0;
+  animation: showPopup 0.5s forwards;
+}
+
+/* Error and Success styles */
+.error-popup {
+  background-color: #e74c3c;
+}
+
+.success-popup {
+  background-color: #2ecc71;
+}
+
+/* Popup animation */
+@keyframes showPopup {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Auto-hide after 3 seconds */
+@keyframes hidePopup {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+.input-group select {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.input-group option {
+  border-radius: 10px;
+  background-color: transparent;
 }

@@ -1,0 +1,237 @@
+/* .chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;
+  height: 500px;
+  margin: 20px auto;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #ece5dd;
+}
+
+.messages {
+  flex-grow: 1;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.message {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+  transition: background-color 0.2s;
+}
+
+.user {
+  background-color: #9fa8f39a;
+  margin-left: auto;
+  flex-direction: row-reverse;
+  text-transform: capitalize;
+}
+.user strong {
+  display: flex;
+  justify-content: end;
+}
+
+.user:hover {
+  background-color: #d1c4e9;
+}
+
+.bot {
+  background-color: #a7cbf1;
+  text-transform: capitalize;
+}
+.bot:hover {
+  background-color: #92aaecd3;
+}
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.chat-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.send-button {
+  padding: 10px 15px;
+  background-color: #435c75;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.send-button:hover {
+  background-color: #2b4358;
+}
+
+.no-messages {
+  text-align: center;
+  color: #999;
+}
+
+.logout-icons img{
+  width: 35px;
+  height: 35px;
+} */
+
+html,
+body {
+  width: 100%; /* Ensure the body and html fill the full height */
+  height: 100%; /* Ensure the body and html fill the full height */
+  margin: 0;
+  font-family: Arial, sans-serif; /* Use a readable font */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  margin: 0 auto; /* Center the container */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #ece5dd;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align items to the ends */
+  margin-bottom: 10px;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff; /* Blue color for back button */
+  font-size: 16px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.message {
+  font-size: 14px; /* Slightly larger font size */
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+  transition: background-color 0.2s;
+}
+
+.user {
+  background-color: #9fa8f39a;
+  margin-left: auto; /* Align user messages to the right */
+  text-transform: capitalize;
+}
+
+.user strong {
+  display: flex;
+  justify-content: end;
+}
+
+.user:hover {
+  background-color: #d1c4e9; /* Slightly darker on hover */
+}
+
+.bot {
+  background-color: #a7cbf1;
+  text-transform: capitalize;
+}
+
+.bot:hover {
+  background-color: #92aaecd3; /* Slightly darker on hover */
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Add spacing above the input */
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.chat-input:focus {
+  border-color: #007bff; /* Blue color on focus */
+  outline: none;
+}
+
+.send-button {
+  padding: 10px 15px;
+  background-color: #435c75;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.send-button:hover {
+  background-color: #2b4358; /* Darker on hover */
+}
+
+.no-messages {
+  text-align: center;
+  color: #999;
+}
+.back-button {
+  color: white;
+  background-color: #435c75;
+}
