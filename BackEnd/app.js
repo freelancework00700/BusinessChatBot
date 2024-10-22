@@ -1,11 +1,34 @@
 import express from "express";
+import { Routes } from "./routes/index.js";
+import cors from "cors";
 
-const app = express();
+export class App {
+    express = express();
+    routes = new Routes();
+    
+    constructor() {
+        this.express.use(express.json({ limit: '100mb' }));
 
-app.use(express.json({ limit: '100mb' }));
+        //* Use to resolve cors error
+        this.express.use(
+            cors({
+            origin: "*",
+            methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+            allowedHeaders: [
+                "Origin, X-Requested-With, Content-Type, Accept,Authorization, Access-Control-Allow-Headers, access-token, X-User-Ip",
+            ],
+            credentials: true,
+            })
+        );
 
-app.get('/', (req, res) => {
-    res.send('Server Works! ☘️');
-});
+        this.express.use('/api', this.routes.router);
+        
+        this.express.get('/', (req, res) => {
+            res.send('Server Works! ☘️');
+        });
+    }
 
-export default app;
+    listen(port, callback) {
+        this.express.listen(port, callback);
+    }
+}
